@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok live</title>
+    <style>
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+        
+        body {
+            margin: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        video {
+            max-width: 100%;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+        }
+
+        #mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./TikTok.png') center center no-repeat;
+            background-size: contain;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #BFFDFB;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 1.5px rgba(255, 0, 78, 0.7);
+            cursor: pointer;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="videoElement" controls>
+        <source src="./Live.mp4" type="video/mp4">
+    </video>
+    <div id="mask">點擊進入直播</div>
+
+    <script>
+        const video = document.getElementById('videoElement');
+        const mask = document.getElementById('mask');
+
+        mask.onclick = () => {
+            video.play();
+            mask.style.display = 'none';
+        };
+    </script>
+</body>
+</html>
